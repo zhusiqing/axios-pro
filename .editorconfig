@@ -1,0 +1,25 @@
+# blog doc: http://www.alloyteam.com/2014/12/editor-config/
+# example: https://github.com/editorconfig/editorconfig/wiki/Projects-Using-EditorConfig
+# blog doc: https://www.cnblogs.com/xiyangbaixue/p/4201490.html
+# doc: https://docs.microsoft.com/en-us/visualstudio/ide/create-portable-custom-editor-options?view=vs-2017
+
+# javascript code style guid: https://github.com/chrisyip/code_style_guides/blob/master/JavaScript_Style_Guide.md
+
+# question
+# 1. should add semicolon at the end of the code, [trim trailing semicolon](https://github.com/editorconfig/editorconfig/issues/331)
+
+# top-most EditorConfig file
+root = true
+
+# Matches multiple files with brace expansion notation
+# Set default charset
+[*]
+indent_style = space
+indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+end_of_line = lf
+
+[*.md]
+trim_trailing_whitespace = false

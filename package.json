@@ -1,0 +1,30 @@
+{
+  "name": "axios-pro",
+  "version": "1.0.0",
+  "description": "axios plugin, for the project normal uasge, such as mappers and handler(error, data(code), timeout) and so on",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muzi131313/axios-pro.git"
+  },
+  "keywords": [
+    "axios",
+    "plugin",
+    "mappers",
+    "handlers"
+  ],
+  "author": "muzi131313",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/muzi131313/axios-pro/issues",
+    "email": "muzi131313@163.com"
+  },
+  "homepage": "https://github.com/muzi131313/axios-pro#readme",
+  "dependencies": {
+    "es6-promise": "^4.2.5",
+    "promise.prototype.finally": "^3.1.0"
+  }
+}
