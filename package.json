@@ -24,7 +24,15 @@
   },
   "homepage": "https://github.com/muzi131313/axios-pro#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "es6-promise": "^4.2.5",
-    "promise.prototype.finally": "^3.1.0"
+    "promise.prototype.finally": "^3.1.0",
+    "qs": "^6.5.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-eslint": "^3.1.4",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0-beta.3"
   }
 }
