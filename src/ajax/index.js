@@ -1,7 +1,7 @@
 import axios from 'axios'
-import config from '@/http/config' // 倒入默认配置
-import request from '@/http/ajax/interceptors/request'
-import response from '@/http/ajax/interceptors/response'
+import config from '@/config' // 倒入默认配置
+import request from '@/ajax/interceptors/request'
+import response from '@/ajax/interceptors/response'
 
 // (type, url, param, opts)
 export default options => {
@@ -9,10 +9,7 @@ export default options => {
     let { baseURL, headers } = config
     // support override headers from methods
     options = Object.assign(config, options)
-    // if (options.headers) {
-    //   headers = Object.assign(headers, options.headers)
-    //   delete options.headers
-    // }
+
     let instance = axios.create({
       baseURL,
       headers,

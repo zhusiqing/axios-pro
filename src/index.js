@@ -3,7 +3,7 @@
  * @desc {{description}}{{http暴露接口}}
  * @createTime 2018年11月03日18:09:33
  */
-import httpPromise from '@/http/promise'
+import httpPromise from '@/promise'
 
 const install = (Vue, options) => {
   if (install.installed) {

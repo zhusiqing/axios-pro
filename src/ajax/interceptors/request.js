@@ -19,11 +19,6 @@ export default (instance, config) => {
 
       // Tip: 2
       // 带上 token , 可以结合 vuex 或者重 localStorage
-      // if (store.getters.token) {
-      //     config.headers['X-Token'] = getToken() // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
-      // } else {
-      //     // 重定向到登录页面
-      // }
       config.handlers && config.handlers.token && config.handlers.token(config)
 
       // Tip: 3
@@ -45,6 +40,7 @@ export default (instance, config) => {
       //  1.判断请求超时
       if (error.code === 'ECONNABORTED'
         && error.message.indexOf('timeout') !== -1) {
+        // TODO: 超时处理
         console.log('根据你设置的timeout/真的请求超时 判断请求现在超时了，你可以在这里加入超时的处理方案')
         config.handlers && config.handlers.timeout && config.handlers.timeout(error.message)
         // return service.request(originalRequest);//例如再重复请求一次

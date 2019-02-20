@@ -4,7 +4,7 @@ import {
   put,
   del,
   patch
-} from '@/http/ajax/api'
+} from '@/ajax/api'
 
 const initHttpPromise = (mappers, config) => {
   return Object.keys(mappers).reduce((current, now) => {

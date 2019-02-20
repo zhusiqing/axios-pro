@@ -1,4 +1,4 @@
-import ajax from '@/http/ajax'
+import ajax from '@/ajax'
 
 /**
  * @name get
