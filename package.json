@@ -2,8 +2,9 @@
   "name": "axios-pro",
   "version": "1.0.0",
   "description": "axios plugin, for the project normal uasge, such as mappers and handler(error, data(code), timeout) and so on",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "webpack --mode production ./src/index.js --output ./dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -32,7 +33,19 @@
   "devDependencies": {
     "@vue/cli-plugin-eslint": "^3.1.4",
     "@vue/eslint-config-standard": "^4.0.0",
+    "ajv": "^6.9.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^1.0.1",
     "eslint": "^5.8.0",
-    "eslint-plugin-vue": "^5.0.0-beta.3"
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-vue": "^5.0.0-beta.3",
+    "path": "^0.12.7",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3"
   }
 }
