@@ -1,4 +1,4 @@
-var ajax = require('ajax')
+var ajax = require('./index')
 
 var api = {}
 

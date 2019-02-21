@@ -1,7 +1,7 @@
-var axios = require('.axios')
-var config = require('./config') // 倒入默认配置
-var request = require('./ajax/interceptors/request')
-var response = require('./ajax/interceptors/response')
+var axios = require('axios')
+var config = require('../config') // 倒入默认配置
+var request = require('./interceptors/request')
+var response = require('./interceptors/response')
 
 // (type, url, param, opts)
 module.exports = function (options) {

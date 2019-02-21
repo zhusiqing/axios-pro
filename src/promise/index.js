@@ -1,4 +1,4 @@
-var api = require('./ajax/api')
+var api = require('../ajax/api')
 
 var get = api.get
 var post = api.post

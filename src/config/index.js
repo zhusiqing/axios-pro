@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   method: 'post',
   // 基础url前缀
   baseURL: '',
