@@ -9,6 +9,8 @@
 import httpPromise from '@/promise'
 import { combine } from '@/utils'
 
+const axiosPro = {}
+
 const install = (Vue, options) => {
   if (install.installed) {
     return
@@ -23,4 +25,12 @@ const install = (Vue, options) => {
   Vue.prototype.$api = httpPromise(options)
 }
 
-export default { install, combine }
+// 自动安装 方便打包成压缩文件, 用<script scr=''></script>的方式引用
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
+}
+
+axiosPro.install = install
+axiosPro.combine = combine
+
+module.exports = axiosPro
