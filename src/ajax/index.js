@@ -1,16 +1,16 @@
-import axios from 'axios'
-import config from '@/config' // 倒入默认配置
-import request from '@/ajax/interceptors/request'
-import response from '@/ajax/interceptors/response'
+var axios = require('.axios')
+var config = require('./config') // 倒入默认配置
+var request = require('./ajax/interceptors/request')
+var response = require('./ajax/interceptors/response')
 
 // (type, url, param, opts)
-export default options => {
+module.exports = function (options) {
   return new Promise((resolve, reject) => {
-    let { baseURL, headers } = config
+    var { baseURL, headers } = config
     // support override headers from methods
     options = Object.assign(config, options)
 
-    let instance = axios.create({
+    var instance = axios.create({
       baseURL,
       headers,
       transformResponse: [ data => {

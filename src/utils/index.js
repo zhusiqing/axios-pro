@@ -9,20 +9,20 @@
  */
 var combine = function(objA, objB) {
   var objs = [objA, objB]
-  objs = objs.sort((a, b) => {
+  objs = objs.sort(function (a, b) {
     return Object.keys(b).length - Object.keys(a).length
   })
   var baseObj = objs[0]
   var baseKeys = Object.keys(baseObj)
   var obj = {}
-  baseKeys.forEach(baseKey => {
-    obj[baseKey] = objs.reduce((cur, obj) => {
+  baseKeys.forEach(function (baseKey) {
+    obj[baseKey] = objs.reduce(function (cur, obj) {
       return Object.assign(cur, obj[baseKey])
     }, {})
   })
   return obj
 }
 
-export default {
+module.exports = {
   combine
 }

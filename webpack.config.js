@@ -1,19 +1,27 @@
-const path = require('path')
 const webpack = require('webpack')
 
-const resolve = dir => path.join(__dirname, '.', dir)
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
-  entry: [
-    'babel-polyfill',
-    resolve('src/index.js')
-  ],
-  resolve: {
-    alias: {
-      '@': resolve('src')
-    }
+  entry: {
+    'axios.pro': './src/index.js',
+    'axios.pro.min': './src/index.js'
+  },
+  output: {
+    filename: '[name].js',
+    libraryExport: 'default',
+    library: 'axiosPro',
+    libraryTarget: 'umd'
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new UglifyJSPlugin({
+        include: /\.min\.js$/
+      })
+    ]
   },
   module: {
     rules: [

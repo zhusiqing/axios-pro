@@ -1,4 +1,6 @@
-import ajax from '@/ajax'
+var ajax = require('ajax')
+
+var api = {}
 
 /**
  * @name get
@@ -6,15 +8,17 @@ import ajax from '@/ajax'
  * @param params object 请求参数
  * @createTime 2018年11月04日00:15:02
  */
-export const get = (url, params, options = {
+api.get = function (url, params, options = {
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
-}) => ajax(Object.assign({
-  url,
-  params,
-  method: 'get'
-}, options))
+}) {
+  return ajax(Object.assign({
+    url,
+    params,
+    method: 'get'
+  }, options))
+}
 
 /**
  * @name post
@@ -22,11 +26,13 @@ export const get = (url, params, options = {
  * @param params object 请求参数
  * @createTime 2018年11月04日00:15:02
  */
-export const post = (url, params, options = {}) => ajax(Object.assign({
-  url,
-  params,
-  method: 'post'
-}, options))
+api.post = function (url, params, options = {}) {
+  return ajax(Object.assign({
+    url,
+    params,
+    method: 'post'
+  }, options))
+}
 
 /**
  * @name put
@@ -34,11 +40,13 @@ export const post = (url, params, options = {}) => ajax(Object.assign({
  * @param params object 请求参数
  * @createTime 2018年11月04日00:15:02
  */
-export const put = (url, params, options = {}) => ajax(Object.assign({
-  url,
-  params,
-  method: 'put'
-}, options))
+api.put = function (url, params, options = {}) {
+  return ajax(Object.assign({
+    url,
+    params,
+    method: 'put'
+  }, options))
+}
 
 /**
  * @name delete
@@ -46,11 +54,13 @@ export const put = (url, params, options = {}) => ajax(Object.assign({
  * @param params object 请求参数
  * @createTime 2018年11月04日00:15:02
  */
-export const del = (url, params, options = {}) => ajax(Object.assign({
-  url,
-  params,
-  method: 'delete'
-}, options))
+api.del = function (url, params, options = {}) {
+  return ajax(Object.assign({
+    url,
+    params,
+    method: 'delete'
+  }, options))
+}
 
 /**
  * @name patch
@@ -58,8 +68,12 @@ export const del = (url, params, options = {}) => ajax(Object.assign({
  * @param params object 请求参数
  * @createTime 2018年11月04日00:15:02
  */
-export const patch = (url, params, options = {}) => ajax(Object.assign({
-  url,
-  params,
-  method: 'patch'
-}, options))
+api.patch = function (url, params, options = {}) {
+  return ajax(Object.assign({
+    url,
+    params,
+    method: 'patch'
+  }, options))
+}
+
+module.exports = api

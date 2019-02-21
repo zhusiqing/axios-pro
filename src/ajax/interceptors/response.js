@@ -3,11 +3,11 @@
  * @desc {{description}}{{返回响应拦截}}
  * @createTime 2018年11月03日23:16:47
  */
-export default (instance, config) => {
+module.exports = function (instance, config) {
   // response 拦截器
   instance.interceptors.response.use(
-    response => {
-      let data
+    function (response) {
+      var data
       // IE9时response.data是undefined，因此需要使用response.request.responseText(Stringify后的字符串)
       if (!response.data) {
         data = response.request.responseText
@@ -17,8 +17,8 @@ export default (instance, config) => {
       }
 
       // 文件流
-      const fileTypes = ['string', 'blob']
-      const dataType = Object.prototype.toString.call(data)
+      var fileTypes = ['string', 'blob']
+      var dataType = Object.prototype.toString.call(data)
         .replace('[object ', '')
         .replace(']', '')
         .toLowerCase()
@@ -34,7 +34,7 @@ export default (instance, config) => {
 
       return data
     },
-    err => {
+    function (err) {
       if (err && err.response) {
         switch (err.response.status) {
           case 400:

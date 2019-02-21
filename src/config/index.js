@@ -21,14 +21,15 @@ export default {
      * @desc {{description}}{{超时的处理, REM: 从外部传参重写}}
      * @param \{{{string}}\} {{msg}} {{超时信息}}{{}}
      */
-    timeout (msg) {
+    timeout: function (msg) {
     },
     /**
      * @name data
      * @desc {{description}}{{处理后端约定code, REM: 从外部传参重写}}
      * @param \{{{number}}\} {{code}} {{后端返回code}}{{}}
      */
-    data (data = {}) {
+    data: function (data) {
+      data = data || {}
       const code = data.code
       // 根据返回的code值来做不同的处理（和后端约定）
       switch (code) {
@@ -51,11 +52,11 @@ export default {
      * @param \{{{errorInfo.message}}\} {{errorInfo}} {{错误信息}}{{}}
      * @param \{{{errorInfo.response.status}}\} {{errorInfo}} {{错误状态}}{{}}
      */
-    error (errorInfo) {
+    error: function (errorInfo) {
       // 此处我使用的是 element UI 的提示组件
       // Message.error(`ERROR: ${err}`);
     },
-    token (config) {
+    token: function (config) {
       // if (!Utils.isNotLogin()) {
       //     config.headers['X-Token'] = Utils.getToken() // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
       // } else {
@@ -66,10 +67,10 @@ export default {
     loading: {
       // 是否开启动画, 默认关闭, 需要请求中主动开启
       open: false,
-      start () {
+      start: function () {
         // UI开始loading动画
       },
-      end () {
+      end: function () {
         // UI结束loading动画
       }
     }

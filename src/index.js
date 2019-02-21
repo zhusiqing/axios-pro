@@ -6,8 +6,8 @@
  *  npm run build && git add -A dist
  *  npm version patch
  */
-import httpPromise from '@/promise'
-import { combine } from '@/utils'
+const httpPromise = require('./promise')
+const utils = require('./utils')
 
 const axiosPro = {}
 
@@ -25,12 +25,7 @@ const install = (Vue, options) => {
   Vue.prototype.$api = httpPromise(options)
 }
 
-// 自动安装 方便打包成压缩文件, 用<script scr=''></script>的方式引用
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue)
-}
-
 axiosPro.install = install
-axiosPro.combine = combine
+axiosPro.combine = utils.combine
 
 module.exports = axiosPro

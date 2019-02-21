@@ -1,11 +1,11 @@
-import qs from 'qs' // 序列化请求数据，视服务端的要求
+var qs = require('qs') // 序列化请求数据，视服务端的要求
 
-const stringifyTypes = ['post', 'put', 'patch', 'delete']
+var stringifyTypes = ['post', 'put', 'patch', 'delete']
 
-export default (instance, config) => {
+module.exports = function (instance, config) {
   // request 拦截器
   instance.interceptors.request.use(
-    config => {
+    function (config) {
       // Tip: 1
       // 请求开始的时候可以结合 vuex 开启全屏的 loading 动画
       if (config.handlers
@@ -23,7 +23,8 @@ export default (instance, config) => {
 
       // Tip: 3
       // TODO: 根据请求方法，序列化传来的参数，根据后端需求是否序列化
-      let { method, params } = config
+      var method = config.method
+      var params = config.params
       method = method.toLocaleLowerCase()
       if (~stringifyTypes.indexOf(method)) {
         config.data = qs.stringify(params)
@@ -31,7 +32,7 @@ export default (instance, config) => {
       }
       return config
     },
-    error => {
+    function (error) {
       // 请求错误时做些事(接口错误、超时等)
       // Tip: 4
       // 关闭loadding
