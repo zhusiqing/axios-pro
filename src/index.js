@@ -2,6 +2,9 @@
  * @file index.js
  * @desc {{description}}{{http暴露接口}}
  * @createTime 2018年11月03日18:09:33
+ * @doc
+ *  npm run build && git add -A dist
+ *  npm version patch
  */
 import httpPromise from '@/promise'
 import { combine } from '@/utils'
