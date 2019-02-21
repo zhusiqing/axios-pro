@@ -4,6 +4,7 @@
  * @createTime 2018年11月03日18:09:33
  */
 import httpPromise from '@/promise'
+import { combine } from '@/utils'
 
 const install = (Vue, options) => {
   if (install.installed) {
@@ -19,4 +20,4 @@ const install = (Vue, options) => {
   Vue.prototype.$api = httpPromise(options)
 }
 
-export default { install }
+export default { install, combine }
