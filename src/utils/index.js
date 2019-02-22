@@ -1,14 +1,21 @@
 /**
  * @name combine
- * @desc 合并obj
+ * @desc combine to obj to one obj(only support deep of one)
  *  var a = { a: 123 }; var b = { b: 333 };
  *  var c = combine(a, b); // { a: 123, b: 333 }
  * @param {object} objA
  * @param {object} objB
  * @createTime 2019年02月21日16:08:38
  */
-var combine = function(objA, objB) {
-  var objs = [objA, objB]
+var combine = function(...more) {
+  if (!more) {
+    return console.warn()
+  }
+  if (!more
+    || (more && more.length < 2)) {
+    return console.warn('combine() require less two params')
+  }
+  var objs = more
   objs = objs.sort(function (a, b) {
     return Object.keys(b).length - Object.keys(a).length
   })
