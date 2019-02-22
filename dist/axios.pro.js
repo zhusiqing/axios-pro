@@ -1772,7 +1772,9 @@ var install = function install(Vue, options) {
   // Object.defineProperties未生效
   // doc: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties
   // 注意哦，此处挂载在 Vue 原型的 $api 对象上
-  Vue.prototype.$api = httpPromise(options);
+  var api = httpPromise(options);
+  Vue.prototype.$api = api;
+  axiosPro.api = api;
 };
 
 axiosPro.install = install;
