@@ -29,7 +29,7 @@ module.exports = function (options) {
       .then(res => {
         // console.log('res: ', res)
         const data = Object.prototype.toString.call(res.data) === '[object String]'
-          ? JSON.parse(res)
+          ? JSON.parse(res.data)
           : res.data
         resolve(data)
         return res
