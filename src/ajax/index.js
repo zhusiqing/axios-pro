@@ -30,7 +30,7 @@ module.exports = function (options) {
         // console.log('res: ', res)
         const data = Object.prototype.toString.call(res.data) === '[object String]'
           ? JSON.parse(res.data)
-          : res.data
+          : res
         resolve(data)
         return res
       })
