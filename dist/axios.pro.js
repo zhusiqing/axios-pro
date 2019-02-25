@@ -2229,7 +2229,8 @@ module.exports = function (options) {
     // 请求处理
     return instance(options).then(function (res) {
       // console.log('res: ', res)
-      resolve(res);
+      var data = Object.prototype.toString.call(res.data) === '[object String]' ? JSON.parse(res.data) : res;
+      resolve(data);
       return res;
     }).catch(function (error) {
       reject(error);
@@ -4865,15 +4866,25 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /**
  * @name combine
- * @desc 合并obj
+ * @desc combine to obj to one obj(only support deep of one)
  *  var a = { a: 123 }; var b = { b: 333 };
  *  var c = combine(a, b); // { a: 123, b: 333 }
  * @param {object} objA
  * @param {object} objB
  * @createTime 2019年02月21日16:08:38
  */
-var combine = function combine(objA, objB) {
-  var objs = [objA, objB];
+var combine = function combine() {
+  for (var _len = arguments.length, more = Array(_len), _key = 0; _key < _len; _key++) {
+    more[_key] = arguments[_key];
+  }
+
+  if (!more) {
+    return console.warn();
+  }
+  if (!more || more && more.length < 2) {
+    return console.warn('combine() require less two params');
+  }
+  var objs = more;
   objs = objs.sort(function (a, b) {
     return (0, _keys2.default)(b).length - (0, _keys2.default)(a).length;
   });
