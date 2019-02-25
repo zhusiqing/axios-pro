@@ -28,7 +28,10 @@ module.exports = function (options) {
     return instance(options)
       .then(res => {
         // console.log('res: ', res)
-        resolve(res)
+        const data = Object.prototype.toString.call(res.data) === '[object String]'
+          ? JSON.parse(res)
+          : res.data
+        resolve(data)
         return res
       })
       .catch(error => {
