@@ -2286,6 +2286,16 @@ var config = __webpack_require__(115); // 倒入默认配置
 var request = __webpack_require__(116);
 var response = __webpack_require__(120);
 
+// 返回数据解析
+var parseData = function parseData(res) {
+  try {
+    var data = Object.prototype.toString.call(res.data) === '[object String]' ? JSON.parse(res.data) : res;
+    return data;
+  } catch (e) {
+    return res;
+  }
+};
+
 // (type, url, param, opts)
 module.exports = function (options) {
   return new _promise2.default(function (resolve, reject) {
@@ -2311,8 +2321,7 @@ module.exports = function (options) {
 
     // 请求处理
     return instance(options).then(function (res) {
-      // console.log('res: ', res)
-      var data = Object.prototype.toString.call(res.data) === '[object String]' ? JSON.parse(res.data) : res;
+      var data = parseData(res);
       resolve(data);
       return res;
     }).catch(function (error) {
