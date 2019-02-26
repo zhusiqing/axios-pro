@@ -7,9 +7,9 @@ var put = api.put
 var del = api.del
 var patch = api.patch
 
-var transURL = function (url) {
+var transURL = function (url, urlParams) {
   var urlType = utils.objType(url)
-  return urlType === 'function' ? url() : url
+  return urlType === 'function' ? url(urlParams) : url
 }
 
 var initHttpPromise = function (mappers, config) {
@@ -20,8 +20,8 @@ var initHttpPromise = function (mappers, config) {
       case 'gets':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
-          url = transURL(url)
-          httpPromise[reqKey] = function (params, options = config) {
+          httpPromise[reqKey] = function (params, options = config, urlParams) {
+            url = transURL(url, urlParams)
             return get(url, params, options)
           }
         })
@@ -29,8 +29,8 @@ var initHttpPromise = function (mappers, config) {
       case 'posts':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
-          url = transURL(url)
-          httpPromise[reqKey] = function (params, options = config) {
+          httpPromise[reqKey] = function (params, options = config, urlParams) {
+            url = transURL(url, urlParams)
             return post(url, params, options)
           }
         })
@@ -38,8 +38,8 @@ var initHttpPromise = function (mappers, config) {
       case 'puts':
         Object.keys(request).forEach(function(reqKey) {
           var url = request[reqKey]
-          url = transURL(url)
-          httpPromise[reqKey] = function (params, options = config) {
+          httpPromise[reqKey] = function (params, options = config, urlParams) {
+            url = transURL(url, urlParams)
             return put(url, params, options)
           }
         })
@@ -47,8 +47,8 @@ var initHttpPromise = function (mappers, config) {
       case 'dels':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
-          url = transURL(url)
-          httpPromise[reqKey] = function (params, options = config) {
+          httpPromise[reqKey] = function (params, options = config, urlParams) {
+            url = transURL(url, urlParams)
             return del(url, params, options)
           }
         })
@@ -56,8 +56,8 @@ var initHttpPromise = function (mappers, config) {
       case 'patches':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
-          url = transURL(url)
-          httpPromise[reqKey] = function (params, options = config) {
+          httpPromise[reqKey] = function (params, options = config, urlParams) {
+            url = transURL(url, urlParams)
             return patch(url, params, options)
           }
         })
