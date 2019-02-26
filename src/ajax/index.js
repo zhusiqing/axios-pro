@@ -3,6 +3,19 @@ var config = require('../config') // 倒入默认配置
 var request = require('./interceptors/request')
 var response = require('./interceptors/response')
 
+// 返回数据解析
+var parseData = function (res) {
+  try {
+    var data = Object.prototype.toString.call(res.data) === '[object String]'
+      ? JSON.parse(res.data)
+      : res
+    return data
+  }
+  catch (e) {
+    return res
+  }
+}
+
 // (type, url, param, opts)
 module.exports = function (options) {
   return new Promise((resolve, reject) => {
@@ -27,10 +40,7 @@ module.exports = function (options) {
     // 请求处理
     return instance(options)
       .then(res => {
-        // console.log('res: ', res)
-        const data = Object.prototype.toString.call(res.data) === '[object String]'
-          ? JSON.parse(res.data)
-          : res
+        const data = parseData(res)
         resolve(data)
         return res
       })
