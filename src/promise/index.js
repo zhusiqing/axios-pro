@@ -1,10 +1,16 @@
 var api = require('../ajax/api')
+var utils = require('../utils')
 
 var get = api.get
 var post = api.post
 var put = api.put
 var del = api.del
 var patch = api.patch
+
+var transURL = function (url) {
+  var urlType = utils.objType(url)
+  return urlType === 'function' ? url() : url
+}
 
 var initHttpPromise = function (mappers, config) {
   return Object.keys(mappers).reduce(function (current, now) {
@@ -14,6 +20,7 @@ var initHttpPromise = function (mappers, config) {
       case 'gets':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
+          url = transURL(url)
           httpPromise[reqKey] = function (params, options = config) {
             return get(url, params, options)
           }
@@ -22,6 +29,7 @@ var initHttpPromise = function (mappers, config) {
       case 'posts':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
+          url = transURL(url)
           httpPromise[reqKey] = function (params, options = config) {
             return post(url, params, options)
           }
@@ -30,6 +38,7 @@ var initHttpPromise = function (mappers, config) {
       case 'puts':
         Object.keys(request).forEach(function(reqKey) {
           var url = request[reqKey]
+          url = transURL(url)
           httpPromise[reqKey] = function (params, options = config) {
             return put(url, params, options)
           }
@@ -38,6 +47,7 @@ var initHttpPromise = function (mappers, config) {
       case 'dels':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
+          url = transURL(url)
           httpPromise[reqKey] = function (params, options = config) {
             return del(url, params, options)
           }
@@ -46,6 +56,7 @@ var initHttpPromise = function (mappers, config) {
       case 'patches':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
+          url = transURL(url)
           httpPromise[reqKey] = function (params, options = config) {
             return patch(url, params, options)
           }

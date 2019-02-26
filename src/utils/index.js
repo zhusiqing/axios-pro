@@ -30,6 +30,21 @@ var combine = function(...more) {
   return obj
 }
 
+/**
+ * @name objType
+ * @desc {{description}}{{获取数据的obj类型}}
+ * @param {Object} obj 要获取类型的obj值
+ * @createTime 2019年02月26日10:04:52
+ */
+var objType = function (obj) {
+  return Object.prototype.toString
+    .call(obj)
+    .replace('[object ', '')
+    .replace(']', '')
+    .toLowerCase()
+}
+
 module.exports = {
-  combine
+  combine,
+  objType
 }
