@@ -1871,9 +1871,9 @@ var put = api.put;
 var del = api.del;
 var patch = api.patch;
 
-var transURL = function transURL(url) {
+var transURL = function transURL(url, urlParams) {
   var urlType = utils.objType(url);
-  return urlType === 'function' ? url() : url;
+  return urlType === 'function' ? url(urlParams) : url;
 };
 
 var initHttpPromise = function initHttpPromise(mappers, config) {
@@ -1884,10 +1884,11 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
       case 'gets':
         (0, _keys2.default)(request).forEach(function (reqKey) {
           var url = request[reqKey];
-          url = transURL(url);
           httpPromise[reqKey] = function (params) {
             var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : config;
+            var urlParams = arguments[2];
 
+            url = transURL(url, urlParams);
             return get(url, params, options);
           };
         });
@@ -1895,10 +1896,11 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
       case 'posts':
         (0, _keys2.default)(request).forEach(function (reqKey) {
           var url = request[reqKey];
-          url = transURL(url);
           httpPromise[reqKey] = function (params) {
             var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : config;
+            var urlParams = arguments[2];
 
+            url = transURL(url, urlParams);
             return post(url, params, options);
           };
         });
@@ -1906,10 +1908,11 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
       case 'puts':
         (0, _keys2.default)(request).forEach(function (reqKey) {
           var url = request[reqKey];
-          url = transURL(url);
           httpPromise[reqKey] = function (params) {
             var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : config;
+            var urlParams = arguments[2];
 
+            url = transURL(url, urlParams);
             return put(url, params, options);
           };
         });
@@ -1917,10 +1920,11 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
       case 'dels':
         (0, _keys2.default)(request).forEach(function (reqKey) {
           var url = request[reqKey];
-          url = transURL(url);
           httpPromise[reqKey] = function (params) {
             var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : config;
+            var urlParams = arguments[2];
 
+            url = transURL(url, urlParams);
             return del(url, params, options);
           };
         });
@@ -1928,10 +1932,11 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
       case 'patches':
         (0, _keys2.default)(request).forEach(function (reqKey) {
           var url = request[reqKey];
-          url = transURL(url);
           httpPromise[reqKey] = function (params) {
             var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : config;
+            var urlParams = arguments[2];
 
+            url = transURL(url, urlParams);
             return patch(url, params, options);
           };
         });
