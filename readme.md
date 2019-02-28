@@ -13,12 +13,98 @@
   - 后台应在headers中添加filename的属性，值为文件名
 - 接口工厂
 
-### 用法
+### 推荐做法
+- add api module
+  ````
+  .
+  ├── App.vue
+  ├── api
+  │   ├── index.js
+  │   └── modules
+  │       ├── org.js
+  │       └── seal.js
+  ├── store
+  │   ├── index.js
+  │   └── modules
+  │       ├── org.js
+  │       └── seal.js
+  ├── main.js
+  ````
+  - `store/index.js`:
+    ````
+    import org from '@/api/modules/org'
+    import user from '@/api/modules/user'
+    const mappers = axiosPro.combine(
+      org,
+      seal
+    )
+    const config = {
+    }
+    export default {
+      mappers,
+      config
+    }
+    ````
+  - `api/modules/org.js`:
+    ````
+    const org = {
+      gets: {
+        queryOrg: 'api/v1/society/seal/site/query/org'
+      },
+      posts: {
+      },
+      puts: {
+      },
+      dels: {
+      },
+      patches: {
+      }
+    }
+    export default org
+    ````
+  - `store/modules/org.js`:
+    ````
+    import axiosPro from 'axios-pro'
+
+    export default {
+      namespaced: true,
+      actions: {
+        async getOrgs({ commit }, payload) {
+          const resp = await axiosPro.api.queryOrg({
+            jsonConditions: {
+              op: 'or',
+              elements: [
+                {
+                  param: 'name',
+                  op: 'contains',
+                  values: '北京'
+                }
+              ]
+            }
+          })
+          commit('SET_ORGS', resp.content)
+        }
+      },
+    }
+    ````
+  - `main.js`:
+    ````
+    import axiosPro from 'axios-pro'
+    import api from '@/api'
+    const { mappers, config } = api
+    Vue.use(axiosPro, {
+      mappers,
+      config
+    })
+    ````
+
+### 详细用法
 
 - init plugin
 
 ````
 import axiosPro from 'axios-pro'
+
 Vue.use(axiosPro, {
   mappers: {
     gets: {
