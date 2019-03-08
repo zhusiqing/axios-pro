@@ -9,12 +9,13 @@
  */
 var combine = function(...more) {
   if (!more) {
-    return console.warn()
+    return console.warn('combine() require at least one params')
   }
-  if (!more
-    || (more && more.length < 2)) {
-    return console.warn('combine() require less two params')
+  // only one parameter
+  if (more.length === 1) {
+    return more[0]
   }
+  // has two or more than two parameters
   var objs = more
   objs = objs.sort(function (a, b) {
     return Object.keys(b).length - Object.keys(a).length
