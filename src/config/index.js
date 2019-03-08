@@ -56,7 +56,7 @@ module.exports = {
       // 此处我使用的是 element UI 的提示组件
       // Message.error(`ERROR: ${err}`);
     },
-    token: function (config) {
+    config: function (config) {
       // if (!Utils.isNotLogin()) {
       //     config.headers['X-Token'] = Utils.getToken() // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
       // } else {

@@ -19,7 +19,7 @@ module.exports = function (instance, config) {
 
       // Tip: 2
       // 带上 token , 可以结合 vuex 或者重 localStorage
-      config.handlers && config.handlers.token && config.handlers.token(config)
+      config.handlers && config.handlers.config && config.handlers.config(config)
 
       // Tip: 3
       // TODO: 根据请求方法，序列化传来的参数，根据后端需求是否序列化

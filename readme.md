@@ -140,7 +140,12 @@ Vue.use(axiosPro, {
         // Message.error(`ERROR: ${err}`);
         console.log('errorInfo: ', errorInfo)
       },
-      token (config) {
+      // this function was callback when the request was send before
+      // if you has your own config, or want to intercept all the request before send
+      config (config) {
+        config.validateStatus = status => { // 成功状态码定义范围
+          return status >= 200 && status < 300
+        }
         // if (!Utils.isNotLogin()) {
         //     config.headers['X-Token'] = Utils.getToken() // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
         // } else {
