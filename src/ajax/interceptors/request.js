@@ -1,4 +1,4 @@
-var qs = require('qs') // 序列化请求数据，视服务端的要求
+// var qs = require('qs') // 序列化请求数据，视服务端的要求
 
 // var stringifyTypes = ['post', 'put', 'patch', 'delete']
 
