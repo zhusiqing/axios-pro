@@ -27,9 +27,10 @@ api.get = function (url, params, options = {
  * @createTime 2018年11月04日00:15:02
  */
 api.post = function (url, params, options = {}) {
+  const data = params
   return ajax(Object.assign({
     url,
-    params,
+    data,
     method: 'post'
   }, options))
 }
@@ -41,9 +42,10 @@ api.post = function (url, params, options = {}) {
  * @createTime 2018年11月04日00:15:02
  */
 api.put = function (url, params, options = {}) {
+  const data = params
   return ajax(Object.assign({
     url,
-    params,
+    data,
     method: 'put'
   }, options))
 }
@@ -69,9 +71,10 @@ api.del = function (url, params, options = {}) {
  * @createTime 2018年11月04日00:15:02
  */
 api.patch = function (url, params, options = {}) {
+  const data = params
   return ajax(Object.assign({
     url,
-    params,
+    data,
     method: 'patch'
   }, options))
 }
