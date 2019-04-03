@@ -1,6 +1,6 @@
 var qs = require('qs') // 序列化请求数据，视服务端的要求
 
-var stringifyTypes = ['post', 'put', 'patch', 'delete']
+// var stringifyTypes = ['post', 'put', 'patch', 'delete']
 
 module.exports = function (instance, config) {
   // request 拦截器
@@ -23,13 +23,14 @@ module.exports = function (instance, config) {
 
       // Tip: 3
       // TODO: 根据请求方法，序列化传来的参数，根据后端需求是否序列化
-      var method = config.method
-      var params = config.params
-      method = method.toLocaleLowerCase()
-      if (~stringifyTypes.indexOf(method)) {
-        config.data = qs.stringify(params)
-        delete config.params
-      }
+      // TODO: 这里加上这个后, post请求携带的数据丢失
+      // var method = config.method
+      // var params = config.params
+      // method = method.toLocaleLowerCase()
+      // if (~stringifyTypes.indexOf(method)) {
+      //   config.data = qs.stringify(params)
+      //   delete config.params
+      // }
       return config
     },
     function (error) {
