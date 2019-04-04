@@ -21,7 +21,7 @@ module.exports = function (options) {
   return new Promise((resolve, reject) => {
     var { baseURL, headers } = config
     // support override headers from methods
-    options = Object.assign(config, options)
+    options = Object.assign({}, config, options)
 
     var instance = axios.create({
       baseURL,
