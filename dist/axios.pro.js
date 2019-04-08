@@ -2063,7 +2063,7 @@ module.exports = function (options) {
         headers = config.headers;
     // support override headers from methods
 
-    options = (0, _assign2.default)(config, options);
+    options = (0, _assign2.default)({}, config, options);
 
     var instance = axios.create({
       baseURL: baseURL,
