@@ -20,7 +20,8 @@ var initHttpPromise = function (mappers, config) {
       case 'gets':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
-          httpPromise[reqKey] = function (params, options = config, urlParams) {
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config
             url = transURL(url, urlParams)
             return get(url, params, options)
           }
@@ -29,7 +30,8 @@ var initHttpPromise = function (mappers, config) {
       case 'posts':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
-          httpPromise[reqKey] = function (params, options = config, urlParams) {
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config
             url = transURL(url, urlParams)
             return post(url, params, options)
           }
@@ -38,7 +40,8 @@ var initHttpPromise = function (mappers, config) {
       case 'puts':
         Object.keys(request).forEach(function(reqKey) {
           var url = request[reqKey]
-          httpPromise[reqKey] = function (params, options = config, urlParams) {
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config
             url = transURL(url, urlParams)
             return put(url, params, options)
           }
@@ -47,7 +50,8 @@ var initHttpPromise = function (mappers, config) {
       case 'dels':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
-          httpPromise[reqKey] = function (params, options = config, urlParams) {
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config
             url = transURL(url, urlParams)
             return del(url, params, options)
           }
@@ -56,7 +60,8 @@ var initHttpPromise = function (mappers, config) {
       case 'patches':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
-          httpPromise[reqKey] = function (params, options = config, urlParams) {
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config
             url = transURL(url, urlParams)
             return patch(url, params, options)
           }

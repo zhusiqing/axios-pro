@@ -3,6 +3,7 @@
 - [axios-pro-demo](https://github.com/muzi131313/axios-pro-demo)
 
 - TODO:
+  - url列表重名提示(vscode插件处理)
   - 支持传参, 发送formdata数据, 不用自己再处理
 
 ### 目的
@@ -226,6 +227,7 @@ async init () {
 ### 常见问题
 - formdata传参
 ````
+// 自己处理参数
 const data = await this.$api.login({
   username: tel,
   password
@@ -246,6 +248,41 @@ const data = await this.$api.login({
     'Content-Type': 'application/x-www-form-urlencoded'
   }
 })
+// 或者
+const qs = require('qs')
+const data = await this.$api.login(qs.stringify({
+  username: tel,
+  password
+}), {
+  // 更改为form格式
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+})
+````
+- url动态拼接
+````
+// api/modules/user.js
+const user = {
+  gets: {
+    userInfo: userId => `user/info/${userId}`,
+    companyInfo: ({ userId, companyId }) => `user/company/${userId}/${companyId}`
+  },
+  posts: {
+  },
+  puts: {
+  },
+  dels: {
+  },
+  patches: {
+  }
+}
+export default user
+// usage
+const userId = '119'
+const companyId = '21'
+this.$api.userInfo(null, null, userId)
+this.$api.userInfo(null, null, { companyId, userId })
 ````
 
 ### 参考文献
