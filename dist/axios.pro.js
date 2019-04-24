@@ -1641,10 +1641,8 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
       case 'gets':
         (0, _keys2.default)(request).forEach(function (reqKey) {
           var url = request[reqKey];
-          httpPromise[reqKey] = function (params) {
-            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : config;
-            var urlParams = arguments[2];
-
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config;
             url = transURL(url, urlParams);
             return get(url, params, options);
           };
@@ -1653,10 +1651,8 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
       case 'posts':
         (0, _keys2.default)(request).forEach(function (reqKey) {
           var url = request[reqKey];
-          httpPromise[reqKey] = function (params) {
-            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : config;
-            var urlParams = arguments[2];
-
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config;
             url = transURL(url, urlParams);
             return post(url, params, options);
           };
@@ -1665,10 +1661,8 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
       case 'puts':
         (0, _keys2.default)(request).forEach(function (reqKey) {
           var url = request[reqKey];
-          httpPromise[reqKey] = function (params) {
-            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : config;
-            var urlParams = arguments[2];
-
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config;
             url = transURL(url, urlParams);
             return put(url, params, options);
           };
@@ -1677,10 +1671,8 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
       case 'dels':
         (0, _keys2.default)(request).forEach(function (reqKey) {
           var url = request[reqKey];
-          httpPromise[reqKey] = function (params) {
-            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : config;
-            var urlParams = arguments[2];
-
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config;
             url = transURL(url, urlParams);
             return del(url, params, options);
           };
@@ -1689,10 +1681,8 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
       case 'patches':
         (0, _keys2.default)(request).forEach(function (reqKey) {
           var url = request[reqKey];
-          httpPromise[reqKey] = function (params) {
-            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : config;
-            var urlParams = arguments[2];
-
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config;
             url = transURL(url, urlParams);
             return patch(url, params, options);
           };
@@ -1875,6 +1865,7 @@ api.get = function (url, params) {
     }
   };
 
+  params = params || {};
   return ajax((0, _assign2.default)({
     url: url,
     params: params,
@@ -1891,7 +1882,7 @@ api.get = function (url, params) {
 api.post = function (url, params) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
-  var data = params;
+  var data = params || {};
   return ajax((0, _assign2.default)({
     url: url,
     data: data,
@@ -1908,7 +1899,7 @@ api.post = function (url, params) {
 api.put = function (url, params) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
-  var data = params;
+  var data = params || {};
   return ajax((0, _assign2.default)({
     url: url,
     data: data,
@@ -1925,6 +1916,7 @@ api.put = function (url, params) {
 api.del = function (url, params) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
+  params = params || {};
   return ajax((0, _assign2.default)({
     url: url,
     params: params,
@@ -1941,7 +1933,7 @@ api.del = function (url, params) {
 api.patch = function (url, params) {
   var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
-  var data = params;
+  var data = params || {};
   return ajax((0, _assign2.default)({
     url: url,
     data: data,
