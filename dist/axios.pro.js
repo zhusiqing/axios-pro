@@ -1643,8 +1643,8 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
           var url = request[reqKey];
           httpPromise[reqKey] = function (params, options, urlParams) {
             options = options || config;
-            url = transURL(url, urlParams);
-            return get(url, params, options);
+            var requestURL = transURL(url, urlParams);
+            return get(requestURL, params, options);
           };
         });
         break;
@@ -1653,8 +1653,8 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
           var url = request[reqKey];
           httpPromise[reqKey] = function (params, options, urlParams) {
             options = options || config;
-            url = transURL(url, urlParams);
-            return post(url, params, options);
+            var requestURL = transURL(url, urlParams);
+            return post(requestURL, params, options);
           };
         });
         break;
@@ -1663,8 +1663,8 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
           var url = request[reqKey];
           httpPromise[reqKey] = function (params, options, urlParams) {
             options = options || config;
-            url = transURL(url, urlParams);
-            return put(url, params, options);
+            var requestURL = transURL(url, urlParams);
+            return put(requestURL, params, options);
           };
         });
         break;
@@ -1673,8 +1673,8 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
           var url = request[reqKey];
           httpPromise[reqKey] = function (params, options, urlParams) {
             options = options || config;
-            url = transURL(url, urlParams);
-            return del(url, params, options);
+            var requestURL = transURL(url, urlParams);
+            return del(requestURL, params, options);
           };
         });
         break;
@@ -1683,8 +1683,8 @@ var initHttpPromise = function initHttpPromise(mappers, config) {
           var url = request[reqKey];
           httpPromise[reqKey] = function (params, options, urlParams) {
             options = options || config;
-            url = transURL(url, urlParams);
-            return patch(url, params, options);
+            var requestURL = transURL(url, urlParams);
+            return patch(requestURL, params, options);
           };
         });
         break;
