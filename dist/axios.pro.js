@@ -2191,11 +2191,13 @@ module.exports = {
  *  npm run build && git add -A dist
  *  npm version patch
  */
-__webpack_require__(67);
+var promiseFinally = __webpack_require__(67);
 var httpPromise = __webpack_require__(85);
 var utils = __webpack_require__(65);
 
 var axiosPro = {};
+
+promiseFinally.shim();
 
 var install = function install(Vue, options) {
   if (install.installed) {
