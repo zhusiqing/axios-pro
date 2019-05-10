@@ -20,45 +20,50 @@ var initHttpPromise = function (mappers, config) {
       case 'gets':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
-          httpPromise[reqKey] = function (params, options = config, urlParams) {
-            url = transURL(url, urlParams)
-            return get(url, params, options)
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config
+            var requestURL = transURL(url, urlParams)
+            return get(requestURL, params, options)
           }
         })
         break
       case 'posts':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
-          httpPromise[reqKey] = function (params, options = config, urlParams) {
-            url = transURL(url, urlParams)
-            return post(url, params, options)
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config
+            var requestURL = transURL(url, urlParams)
+            return post(requestURL, params, options)
           }
         })
         break
       case 'puts':
         Object.keys(request).forEach(function(reqKey) {
           var url = request[reqKey]
-          httpPromise[reqKey] = function (params, options = config, urlParams) {
-            url = transURL(url, urlParams)
-            return put(url, params, options)
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config
+            var requestURL = transURL(url, urlParams)
+            return put(requestURL, params, options)
           }
         })
         break
       case 'dels':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
-          httpPromise[reqKey] = function (params, options = config, urlParams) {
-            url = transURL(url, urlParams)
-            return del(url, params, options)
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config
+            var requestURL = transURL(url, urlParams)
+            return del(requestURL, params, options)
           }
         })
         break
       case 'patches':
         Object.keys(request).forEach(function (reqKey) {
           var url = request[reqKey]
-          httpPromise[reqKey] = function (params, options = config, urlParams) {
-            url = transURL(url, urlParams)
-            return patch(url, params, options)
+          httpPromise[reqKey] = function (params, options, urlParams) {
+            options = options || config
+            var requestURL = transURL(url, urlParams)
+            return patch(requestURL, params, options)
           }
         })
         break

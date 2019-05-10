@@ -13,6 +13,7 @@ api.get = function (url, params, options = {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
 }) {
+  params = params || {}
   return ajax(Object.assign({
     url,
     params,
@@ -27,7 +28,7 @@ api.get = function (url, params, options = {
  * @createTime 2018年11月04日00:15:02
  */
 api.post = function (url, params, options = {}) {
-  const data = params
+  const data = params || {}
   return ajax(Object.assign({
     url,
     data,
@@ -42,7 +43,7 @@ api.post = function (url, params, options = {}) {
  * @createTime 2018年11月04日00:15:02
  */
 api.put = function (url, params, options = {}) {
-  const data = params
+  const data = params || {}
   return ajax(Object.assign({
     url,
     data,
@@ -57,6 +58,7 @@ api.put = function (url, params, options = {}) {
  * @createTime 2018年11月04日00:15:02
  */
 api.del = function (url, params, options = {}) {
+  params = params || {}
   return ajax(Object.assign({
     url,
     params,
@@ -71,7 +73,7 @@ api.del = function (url, params, options = {}) {
  * @createTime 2018年11月04日00:15:02
  */
 api.patch = function (url, params, options = {}) {
-  const data = params
+  const data = params || {}
   return ajax(Object.assign({
     url,
     data,

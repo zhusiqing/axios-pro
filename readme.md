@@ -2,6 +2,10 @@
 
 - [axios-pro-demo](https://github.com/muzi131313/axios-pro-demo)
 
+- TODO:
+  - url列表重名提示(vscode插件处理)
+  - 支持传参, 发送formdata数据, 不用自己再处理
+
 ### 目的
 - 错误处理
   - 统一错误处理, 统一UI提示
@@ -34,9 +38,12 @@
     ````
     import org from '@/api/modules/org'
     import user from '@/api/modules/user'
+    // ...
+    // combine可以传一个或多个参数, 会合并每个modules的gets、posts、puts、dels、patches值
     const mappers = axiosPro.combine(
       org,
       seal
+      // ...
     )
     const config = {
     }
@@ -215,6 +222,67 @@ async init () {
   })
   console.log('resp: ', resp)
 }
+````
+
+### 常见问题
+- formdata传参
+````
+// 自己处理参数
+const data = await this.$api.login({
+  username: tel,
+  password
+}, {
+  // 对参数进行处理
+  transformRequest: [
+    function(oldData){
+      let newStr = ''
+      for (let item in oldData){
+        newStr += encodeURIComponent(item) + '=' + encodeURIComponent(oldData[item]) + '&'
+      }
+      newStr = newStr.slice(0, -1)
+      return newStr
+    }
+  ],
+  // 更改为form格式
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+})
+// 或者
+const qs = require('qs')
+const data = await this.$api.login(qs.stringify({
+  username: tel,
+  password
+}), {
+  // 更改为form格式
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
+})
+````
+- url动态拼接
+````
+// api/modules/user.js
+const user = {
+  gets: {
+    userInfo: userId => `user/info/${userId}`,
+    companyInfo: ({ userId, companyId }) => `user/company/${userId}/${companyId}`
+  },
+  posts: {
+  },
+  puts: {
+  },
+  dels: {
+  },
+  patches: {
+  }
+}
+export default user
+// usage
+const userId = '119'
+const companyId = '21'
+this.$api.userInfo(null, null, userId)
+this.$api.userInfo(null, null, { companyId, userId })
 ````
 
 ### 参考文献
